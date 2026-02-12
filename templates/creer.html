@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <h1>Créer une partie</h1>
+
+    {% if code_partie == "" %}
+        <form action="creer/attente" method="">
+            <p>
+                <!-- Demande du pseudo -->
+                <label for="pseudo">Pseudo : </label>
+                <input type="text" name="pseudo" id="pseudo" autofocus>
+            </p>
+            <p>
+                <!-- Bouton pour valider -->
+                <input type="submit" value="créer">
+
+            </p>
+        </form>
+    
+    {% else %}
+        <p>Code : {{code_partie}}</p>
+        <p>{{message}}</p>
+    
+    {% endif %}
+
+</body>
+
+</html>

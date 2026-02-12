@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <h1>Rejoindre une partie</h1>
+    <form action="rejoindre/creation" method="">
+        <p>
+            <!-- Demande du pseudo -->
+            <label for="pseudo">Pseudo : </label>
+            <input type="text" name="pseudo" id="pseudo" autofocus>
+        </p>
+        <p>
+            <!-- Demande du code de la partie -->
+            <label for="code_partie">Code : </label>
+            <input type="text" name="code_partie" id="code_partie">
+        </p>
+        <p>
+            <!-- Bouton pour valider -->
+            <input type="submit" value="rejoindre">
+
+        </p>
+    </form>
+    <p>{{message}}</p>
+</body>
+
+</html>
