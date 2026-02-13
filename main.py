@@ -60,6 +60,9 @@ def creer_attente():
         return render_template("creer.html", code_partie=session["code_partie"], message="en attente de joueur")
 
 
+@app.route("/creer/est-ce-que-adversaire-a-rejoint")
+def adversaire_a_rejoint():
+    return str(len(list(etat.parties[session["code_partie"]].joueurs.keys())) == 2)
 
 # Routes partie rejoindre une partie ######################
 @app.route("/rejoindre")
@@ -93,7 +96,7 @@ def rejoindre_creation():
 
         partie.joueurs[session["pseudo"]].mot_cherche = creer_mot_cherche()
 
-        return render_template("rejoindre.html", message="vous êtes dans la partie, actualisez la page du J1, puis cette page")
+        return redirect("/partie")
 
 
 
