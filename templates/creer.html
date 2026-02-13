@@ -23,6 +23,13 @@
     {% else %}
         <p>Code : {{code_partie}}</p>
         <p>{{message}}</p>
+
+	<!-- Declencher redirection si adversaire a rejoint -->
+	<script>setInterval(async () => {
+	  const aRejoint = await (await fetch('est-ce-que-adversaire-a-rejoint')).text()
+	  if(aRejoint == 'True')
+	    window.location.reload();	
+	}, 100);</script>
     
     {% endif %}
 
