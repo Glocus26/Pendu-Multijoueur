@@ -68,13 +68,8 @@ def rejoindre():
 @app.route("/rejoindre/creation")
 def rejoindre_creation():
 
-    #récup du pseudo donné par l'utilisateur
-    try:
-        if a != 1:
-            print("It's very strange")
-    except:
-        pseudo = request.args.get('pseudo').lower()
-        code_partie = request.args.get('code_partie')
+    pseudo = request.args.get('pseudo').lower()
+    code_partie = request.args.get('code_partie')
 
     #rejoindre une partie
     if code_partie not in list(etat.parties.keys()):
@@ -96,7 +91,6 @@ def rejoindre_creation():
         partie.joueurs[pseudo] = j2
 
         partie.joueurs[session["pseudo"]].mot_cherche = creer_mot_cherche()
-        a=1
 
         return render_template("rejoindre.html", message="vous êtes dans la partie, actualisez la page du J1, puis cette page")
 
@@ -215,9 +209,6 @@ def creer_mot_cherche():
         mot_cherche.append("_")
 
     return mot_cherche
-
-
-
 
 
 if __name__ == '__main__':
