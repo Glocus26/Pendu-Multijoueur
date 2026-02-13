@@ -135,6 +135,18 @@ def partie():
 
     return render_template("jeu.html", mot_cherche_aj=re.sub('[A-Za-z]', 'X', "".join(autre_joueur.mot_cherche)), vies_aj=autre_joueur.vies, pseudo_autre_joueur=pseudo_autre_joueur, vies=vies, f_lettres=f_lettres, pseudo=session["pseudo"], mot_cherche=" ".join(mot_cherche))
 
+@app.route("/partie/adversaire")
+def partie_adversaire():
+    code_partie = session["code_partie"]
+    partie = etat.parties[code_partie]
+    joueur = partie.joueurs[session["pseudo"]]
+
+    pseudo_autre_joueur = next(pseudo for pseudo in partie.joueurs if pseudo != session["pseudo"])
+    autre_joueur = partie.joueurs[pseudo_autre_joueur]
+
+    return render_template("jeu_adversaire.html", mot_cherche_aj=re.sub('[A-Za-z]', 'X', "".join(autre_joueur.mot_cherche)), vies_aj=autre_joueur.vies, pseudo_autre_joueur=pseudo_autre_joueur)
+
+
 
 #fonctions
 
