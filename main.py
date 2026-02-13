@@ -163,6 +163,12 @@ def verif_lettre():
     if let_give == "" or let_give == None:
         return
 
+    if len(let_give) != 1:
+        return
+    
+    if let_give.isalpha() == False:
+        return
+
     if let_give.lower() in partie.joueurs[session["pseudo"]].l_propo:
         return
 
@@ -202,7 +208,7 @@ def creer_liste_pour_code():
     alph_maj = list(string.ascii_uppercase)
     alpha_mix = alph_maj + alph_min
 
-    return alpha_min
+    return alph_min
 
 def creer_mot_cherche():
     """
