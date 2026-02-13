@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import random
 import re
 import string
+import secrets
 
 from partie import Partie
 from etat_du_jeu import etat
@@ -10,7 +11,7 @@ from joueur import Joueur
 
 
 app = Flask(__name__)
-app.secret_key = "3015a467b41f35ccabc66b9de777faaa7a0230508713d047e55f14440d77b7ed"
+app.secret_key = str(secrets.token_hex())
 
 
 #routes
@@ -125,7 +126,7 @@ def partie():
         return render_template("fin.html", msg="Bravo !!", mot="".join(partie.mot_a_trouver))
     
     if joueur.est_mort():
-        return render_template("fin.html", msg="dommage...", mot="".join(partie.mot_a_trouver))
+        return render_template("fin.html", msg="Game Over", mot="".join(partie.mot_a_trouver))
 
     mot_cherche = joueur.mot_cherche
     vies = joueur.vies
@@ -188,7 +189,7 @@ def creer_code_jeu():
     retourne un str du code de la partie (5 caractères)
     """
     c = []
-    for i in range(0,5):
+    for i in range(0,4):
         c.append(random.choice(creer_liste_pour_code()))
     
     return "".join(c)
@@ -201,7 +202,7 @@ def creer_liste_pour_code():
     alph_maj = list(string.ascii_uppercase)
     alpha_mix = alph_maj + alph_min
 
-    return alpha_mix
+    return alpha_min
 
 def creer_mot_cherche():
     """
