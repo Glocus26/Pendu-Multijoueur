@@ -8,7 +8,7 @@ import secrets
 from partie import Partie
 from etat_du_jeu import etat
 from joueur import Joueur
-
+from bonhommes import bonhommes
 
 app = Flask(__name__)
 app.secret_key = str(secrets.token_hex())
@@ -128,7 +128,7 @@ def partie():
 
     
 
-    return render_template("jeu.html", mot_cherche_aj=re.sub('[A-Za-z]', 'X', "".join(autre_joueur.mot_cherche)), vies_aj=autre_joueur.vies, pseudo_autre_joueur=pseudo_autre_joueur, vies=vies, f_lettres=f_lettres, pseudo=session["pseudo"], mot_cherche=" ".join(mot_cherche))
+    return render_template("jeu.html", bonhommes=bonhommes, mot_cherche_aj=re.sub('[A-Za-z]', 'X', "".join(autre_joueur.mot_cherche)), vies_aj=autre_joueur.vies, pseudo_autre_joueur=pseudo_autre_joueur, vies=vies, f_lettres=f_lettres, pseudo=session["pseudo"], mot_cherche=" ".join(mot_cherche))
 
 @app.route("/partie/adversaire")
 def partie_adversaire():
@@ -139,7 +139,7 @@ def partie_adversaire():
     pseudo_autre_joueur = next(pseudo for pseudo in partie.joueurs if pseudo != session["pseudo"])
     autre_joueur = partie.joueurs[pseudo_autre_joueur]
 
-    return render_template("jeu_adversaire.html", mot_cherche_aj=re.sub('[A-Za-z]', 'X', "".join(autre_joueur.mot_cherche)), vies_aj=autre_joueur.vies, pseudo_autre_joueur=pseudo_autre_joueur)
+    return render_template("jeu_adversaire.html", bonhommes=bonhommes, mot_cherche_aj=re.sub('[A-Za-z]', 'X', "".join(autre_joueur.mot_cherche)), vies_aj=autre_joueur.vies, pseudo_autre_joueur=pseudo_autre_joueur)
 
 
 
