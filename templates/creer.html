@@ -32,7 +32,7 @@
             function genererQRCode() {
                 var qr = qrcode(0, 'M');
                 // Ajout de |safe pour que l'URL soit bien interprétée par le téléphone
-                qr.addData('{{ current_url|safe }}');
+                qr.addData(location.protocol+'//'+location.host+"/rejoindre?code={{code_partie}}");
                 qr.make();
                 
                 // Affichage avec une taille de module de 5

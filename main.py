@@ -57,14 +57,11 @@ def creer_attente():
         etat.parties[session["code_partie"]].etat = "commencée"
         return redirect(url_for('partie'))
     
+    # Dans main.py, fonction creer_attente()
     else:
-        # On construit l'URL proprement en forçant le protocole http
-        base_url = "http://192.168.14.237:5000"
-        url_rejoindre = f"{base_url}/rejoindre?code={session['code_partie']}"
-        
+        # On envoie juste l'hôte actuel (ex: 192.168.14.237:5000)
         return render_template(
             "creer.html", 
-            current_url=url_rejoindre, 
             code_partie=session["code_partie"], 
             message="en attente de joueur"
         )
