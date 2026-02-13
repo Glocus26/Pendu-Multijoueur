@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% include 'includes/head.html' %}
+
+<body>
+    <p>{{pseudo|title}}</p>
+
+    <h1>{{mot_cherche}}</h1>
+    <p>Vies : {{vies}} </p>
+    <p>Fausses lettres : {{f_lettres}}</p>
+
+    <form action="/partie" method="">
+        <p>
+            <!-- Champ de type "text" -->
+            <label for="nom">Lettre : </label>
+            <input type="text" name="lettre" id="lettre" autofocus>
+
+            <!-- Bouton de validation -->
+            <input type="submit" value="Valider !">
+
+        </p>
+    </form>
+    <BR>
+    <p>_________________________________________________</p>
+    <p>{{pseudo_autre_joueur|title}}</p>
+    <p>{{mot_cherche_aj}}</p>
+    <p>Vies : {{vies_aj}}</p>
+</body>
+
+</html>
