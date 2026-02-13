@@ -10,7 +10,7 @@ class Partie:
 
     def creer_mot_a_trouver(self):
         #récupérer les mots de mots.txt
-        file = open("/home/yann/flask/pendu/mots.txt", "r", encoding="utf-8")
+        file = open("mots.txt", "r", encoding="utf-8")
         mots_fichier = file.read().splitlines()
         file.close()
 

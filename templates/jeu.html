@@ -23,6 +23,20 @@
     </form>
     <BR>
     <p>_________________________________________________</p>
+    
+    <div id="adversaire">
+    </div>
+   
+    <script>
+    setInterval(async function() {
+      const zone = document.querySelector('#adversaire')
+
+      const etatJeuAdversaire = await fetch('/partie/adversaire')
+
+      zone.innerHTML = await etatJeuAdversaire.text()
+    }, 100);
+    </script>
+
 </body>
 
 </html>
