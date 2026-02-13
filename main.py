@@ -56,8 +56,18 @@ def creer_attente():
     if len(list(etat.parties[session["code_partie"]].joueurs.keys())) == 2:
         etat.parties[session["code_partie"]].etat = "commencée"
         return redirect(url_for('partie'))
+    
     else:
-        return render_template("creer.html", code_partie=session["code_partie"], message="en attente de joueur")
+        # On construit l'URL proprement en forçant le protocole http
+        base_url = "http://192.168.14.237:5000"
+        url_rejoindre = f"{base_url}/rejoindre?code={session['code_partie']}"
+        
+        return render_template(
+            "creer.html", 
+            current_url=url_rejoindre, 
+            code_partie=session["code_partie"], 
+            message="en attente de joueur"
+        )
 
 
 @app.route("/creer/est-ce-que-adversaire-a-rejoint")

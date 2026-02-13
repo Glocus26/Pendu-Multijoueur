@@ -23,6 +23,17 @@
         </p>
     </form>
     <p>{{message}}</p>
+    <script>
+        // Récupère le code dans l'URL (ex: ?code=ABCD) et l'injecte dans le formulaire
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            if (code) {
+                document.getElementById('code_partie').value = code;
+                document.getElementById('pseudo').focus();
+            }
+        }
+    </script>
 </body>
 
 </html>

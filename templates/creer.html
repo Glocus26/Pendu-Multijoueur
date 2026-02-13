@@ -23,6 +23,25 @@
     {% else %}
         <p>Code : {{code_partie}}</p>
         <p>{{message}}</p>
+        
+        <!-- Conteneur pour le QR code -->
+        <div id="qrcode"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+        <script>
+            function genererQRCode() {
+                var qr = qrcode(0, 'M');
+                // Ajout de |safe pour que l'URL soit bien interprétée par le téléphone
+                qr.addData('{{ current_url|safe }}');
+                qr.make();
+                
+                // Affichage avec une taille de module de 5
+                document.getElementById('qrcode').innerHTML = qr.createImgTag(5);
+            }
+
+            window.onload = genererQRCode;
+        </script>
+
 
 	<!-- Declencher redirection si adversaire a rejoint -->
 	<script>setInterval(async () => {
